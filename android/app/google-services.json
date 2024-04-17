@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "37192408590",
+    "project_id": "wegro-b96ec",
+    "storage_bucket": "wegro-b96ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37192408590:android:08fed51e76400f8576a65f",
+        "android_client_info": {
+          "package_name": "com.wegro.product"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgmRljdxS3rdLIartpsmxz8oIP_R7np64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
