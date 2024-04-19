@@ -9,18 +9,20 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  String status = '';
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   Future<void> signUp() async {
+    setState(() => status = 'Creating account...');
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
     } on FirebaseAuthException catch (e) {
-      // ignore: avoid_print
-      print(e);
+      setState(() => status = e.message!);
     }
   }
 
@@ -34,14 +36,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
-              'Login',
+              'Create Account',
               style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
-            const Text(
-              '',
-              style: TextStyle(color: Colors.teal),
+            Text(
+              status,
+              style: const TextStyle(color: Colors.teal),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
@@ -80,6 +82,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 shape: const StadiumBorder(),
               ),
               child: const Text('Sign Up'),
+            ),
+            const SizedBox(height: 8),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text(
+                'Sign In',
+                style: TextStyle(color: Colors.lightBlue),
+              ),
             ),
           ],
         ),

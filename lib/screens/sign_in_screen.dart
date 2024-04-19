@@ -10,18 +10,20 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  String status = '';
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   Future<void> signIn() async {
+    setState(() => status = 'Signing in...');
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
     } on FirebaseAuthException catch (e) {
-      // ignore: avoid_print
-      print(e);
+      setState(() => status = e.message!);
     }
   }
 
@@ -35,14 +37,14 @@ class _SignInScreenState extends State<SignInScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
-              'Login',
+              'Welcome',
               style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
-            const Text(
-              '',
-              style: TextStyle(color: Colors.teal),
+            Text(
+              status,
+              style: const TextStyle(color: Colors.teal),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
@@ -76,21 +78,39 @@ class _SignInScreenState extends State<SignInScreen> {
             ElevatedButton(
               onPressed: signIn,
               style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.lightBlue,
                 textStyle: const TextStyle(fontSize: 18),
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: const StadiumBorder(),
               ),
               child: const Text('Sign In'),
             ),
+            const SizedBox(height: 16),
+            OutlinedButton(
+              onPressed: () {
+                GoogleAuthProvider googleAuthProvider = GoogleAuthProvider();
+                FirebaseAuth.instance.signInWithProvider(googleAuthProvider);
+              },
+              style: OutlinedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: const StadiumBorder(),
+              ),
+              child: const Text(
+                'Google Sign In',
+                style: TextStyle(color: Colors.deepOrange),
+              ),
+            ),
+            const SizedBox(height: 8),
             TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SignUpScreen(),
-                      ));
-                },
-                child: const Text('Sign Up'))
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SignUpScreen(),
+                    ));
+              },
+              child: const Text('Create New Account'),
+            ),
           ],
         ),
       ),

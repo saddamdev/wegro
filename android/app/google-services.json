@@ -12,7 +12,20 @@
           "package_name": "com.wegro.product"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "37192408590-rh0coud4b56hcav9l183v5cdm509k0rb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wegro.product",
+            "certificate_hash": "9da2c0f6db6cc8afc0fc0d519f744f8b2110890c"
+          }
+        },
+        {
+          "client_id": "37192408590-i1mp23376g55nmv3v3vc6afkhn2e4m8h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAgmRljdxS3rdLIartpsmxz8oIP_R7np64"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37192408590-i1mp23376g55nmv3v3vc6afkhn2e4m8h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
