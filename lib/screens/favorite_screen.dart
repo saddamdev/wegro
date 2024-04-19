@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
+import '../provider/theme_provider.dart';
+import 'package:flutter/material.dart';
 import 'product_detail_screen.dart';
 
 class FavoriteScreen extends StatelessWidget {
@@ -7,14 +9,19 @@ class FavoriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Favorite'),
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              provider.toggleTheme();
+            },
+            icon: provider.theme == ThemeData.dark()
+                ? const Icon(Icons.light_mode_outlined)
+                : const Icon(Icons.dark_mode_outlined),
           ),
         ],
       ),

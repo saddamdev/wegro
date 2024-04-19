@@ -1,7 +1,9 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:product/screens/product_detail_screen.dart';
+import '../provider/theme_provider.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
@@ -33,14 +35,19 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Shop'),
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              provider.toggleTheme();
+            },
+            icon: provider.theme == ThemeData.dark()
+                ? const Icon(Icons.light_mode_outlined)
+                : const Icon(Icons.dark_mode_outlined),
           ),
         ],
       ),
@@ -68,7 +75,9 @@ class _ProductScreenState extends State<ProductScreen> {
                   child: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: Colors.grey.shade100,
+                      color: provider.theme == ThemeData.dark()
+                          ? Colors.grey.shade900
+                          : Colors.grey.shade100,
                       borderRadius: BorderRadius.circular(8),
                       boxShadow: const [
                         BoxShadow(
