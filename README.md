@@ -1,16 +1,25 @@
 # product
 
-A new Flutter project.
+This is an test Ecommerce app based on FakeStoreAPI.
 
-## Getting Started
+## Features:
 
-This project is a starting point for a Flutter application.
+- Register and Login with Firebase Auth or Google account.
 
-A few resources to get you started if this is your first Flutter project:
+- Browser all products from FakeStoreAPI.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Save product as favorite.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Dark or Light theme mode.
+
+## Packages are used in this project:
+
+firebase_core: ^2.10.0
+
+firebase_auth: ^4.4.2
+
+http: ^0.13.5
+
+hive_flutter: ^1.1.0
+
+provider: ^6.1.2
